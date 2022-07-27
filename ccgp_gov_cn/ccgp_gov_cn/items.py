@@ -9,4 +9,6 @@ import scrapy
 class CcgpGovCnItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    html = scrapy.Field()
+    date = scrapy.Field()

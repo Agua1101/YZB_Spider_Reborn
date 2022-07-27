@@ -1,9 +1,7 @@
 import scrapy
 import time
 from datetime import datetime, date, timedelta
-
-
-
+from yzb_tools.yzb_tag_extract import *
 
 
 
@@ -21,7 +19,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3141.8 Safari/537.36',
             'keep-alive':'False',
         }
-
+        self.url_tag = 'ccgp.gov.cn'
 
 
     def get_date(self):
@@ -74,8 +72,24 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
 
 
     def page_parse(self,response):
-        text = response.text
-        print(text)
+        item = CcgpGovCnItem()
 
-        content =
+        det_html = response.text
+        det_url = response.url
+        print(det_url)
+
+        html = content_html_ex(det_html,self.url_tag,det_url)
+        print(html,'html')
+
+        title = title_ex_total('', det_html)
+        print(title,'title')
+        date = date_ex(det_html, '')
+        print(date,'date')
+
+        item['title'] = title
+        item['html'] = html
+        item['date'] = date
+
+
+
 
