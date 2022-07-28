@@ -2,7 +2,7 @@ import scrapy
 import time
 from datetime import datetime, date, timedelta
 from yzb_tools.yzb_tag_extract import *
-
+from ..items import CcgpGovCnItem
 
 
 
@@ -60,6 +60,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
 
 
     def list_parse(self, response):
+        item = CcgpGovCnItem()
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
         }
@@ -67,6 +68,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
         for det_url in url_list[:1]:
             if det_url.startswith('http'):
                 print(det_url)
+                item['page_url'] = det_url
 
                 yield scrapy.Request(url=det_url,headers=headers,callback=self.page_parse)
 

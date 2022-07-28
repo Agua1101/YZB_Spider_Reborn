@@ -12,3 +12,4 @@ class CcgpGovCnItem(scrapy.Item):
     title = scrapy.Field()
     html = scrapy.Field()
     date = scrapy.Field()
+    page_url = scrapy.Field()

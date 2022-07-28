@@ -14,7 +14,7 @@ d_save = MySQL(host=conf.host, port=conf.port, user=conf.user, password=conf.pas
 
 
 
-class CcgpGovCnPipeline:
+class CcgpGovCnPipeline(object):
     def __init__(self):
         self.d_save = MySQL(host=conf.host, port=conf.port, user=conf.user, password=conf.password, db=conf.db,
                        charset=conf.charset)
@@ -22,15 +22,16 @@ class CcgpGovCnPipeline:
 
 
     def process_item(self, item, spider):
-        dict_save = {}
+        dict_url_save = {}
+        dict_bid_save = {}
         dict_content_save = {}
-        notnull_dict(item['title'], dict_save, 'title')
-        notnull_dict(item['date'], dict_save, 'date')
-
-
-        self.d_save.insert('t_bid', dict_save)
+        notnull_dict(item['page_url'], dict_url_save, 'page_url')
         self.d_save.commit_insert()
 
+        notnull_dict(item['title'], dict_bid_save, 'title')
+        notnull_dict(item['date'], dict_bid_save, 'date')
+        self.d_save.insert('t_bid', dict_bid_save)
+        self.d_save.commit_insert()
         notnull_dict(item['html'], dict_content_save, 'html')
         self.d_save.insert('t_bid_content', dict_content_save)
         self.d_save.commit_insert()
