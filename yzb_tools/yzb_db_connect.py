@@ -19,9 +19,11 @@ class MySQL():
 
     def __init__(self,host,port,user,password,db,charset):
         try:
+            # print('进入mysql init')
             self.db = MySQLdb.connect(host=host,port=port,user=user,password=password,db=db,charset=charset)
             self.db.ping(True)
             self.cursor = self.db.cursor()
+            # print('mysql init执行完毕')
         except Exception as e:
             print(e,'@@@@@@')
 
@@ -63,6 +65,9 @@ class MySQL():
 
         print('1')
         return bid_id
+
+
+
 
     def update_money(self,budget_money=None,bid_money=None,update_time=None,bid_id=None):
         # print(index_status,'-----------index_status------------')

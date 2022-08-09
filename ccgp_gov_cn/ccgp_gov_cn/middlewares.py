@@ -7,6 +7,14 @@ from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+import yzb_ip_proxy
+import random
+
+class ProcessRequest(object):
+    def process_request(self, request, spider):
+        ip_list = yzb_ip_proxy.proxy_ip(2)
+        request.meta.update({'proxy':f"http://agua1101:pgftac5x@{random.choice(ip_list)}/"})
+
 
 
 class CcgpGovCnSpiderMiddleware:

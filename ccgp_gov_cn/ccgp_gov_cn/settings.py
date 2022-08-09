@@ -44,15 +44,17 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'ccgp_gov_cn.middlewares.CcgpGovCnSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+   # 'ccgp_gov_cn.middlewares.CcgpGovCnSpiderMiddleware': 543,
+   'ccgp_gov_cn.middlewares.ProcessRequest': 541,
+}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'ccgp_gov_cn.middlewares.CcgpGovCnDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   # 'ccgp_gov_cn.middlewares.CcgpGovCnDownloaderMiddleware': 543,
+   'ccgp_gov_cn.middlewares.ProcessRequest': 541,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -65,6 +67,14 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
    'ccgp_gov_cn.pipelines.CcgpGovCnPipeline': 300,
 }
+
+# MySQL数据库配置
+host = '39.107.25.250'
+port = 3306
+user = 'root'
+password = 'jie8#jlfsjd'
+db = 'crawl_test'
+charset = 'utf8'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -86,3 +96,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+
+
