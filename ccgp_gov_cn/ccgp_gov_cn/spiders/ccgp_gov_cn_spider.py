@@ -67,7 +67,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
         }
         url_list = response.xpath('//ul[@class="vT-srch-result-list-bid"]//a/@href').getall()
-        for det_url in url_list[:1]:
+        for det_url in url_list:
             if det_url.startswith('http'):
                 print(det_url)
                 item['page_url'] = det_url
@@ -91,7 +91,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
         print(date,'date')
 
         item['title'] = title
-        # item['html'] = det_html
+        item['html'] = det_html
         item['date'] = date
         item['page_url'] = det_url
 
