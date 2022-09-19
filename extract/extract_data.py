@@ -12,6 +12,15 @@ import snow_settings as sst
 from retrying import retry
 import json
 import ast
+import yzb_pkg_update
+
+
+'''
+提取
+
+'''
+
+
 
 # 实例化雪花ID，sst为配置文件
 worker = IdWorker(sst.DATACENTER_ID, sst.WORKER_ID, sst.SEQUENCE)
@@ -22,13 +31,14 @@ logger = Logger()
 class Save_data():
 
     def __init__(self, d_save=None, url_tag=None, logger=None, url_list=None, web_id=None,
-                 table_name='id="zhongbiaoxinxi"'):
+                 table_name='id="zhongbiaoxinxi"',det_html=None):
         self.d_save = d_save
         self.url_tag = url_tag
         self.logger = logger
         self.url_list = url_list
         self.web_id = web_id
         self.table_name = table_name
+        self.det_html = det_html
 
     # 详情页字段拆分和存储
     def save_page(self):
@@ -56,25 +66,25 @@ class Save_data():
                 ]
                 headers['User-Agent'] = random.choice(user_agent_list)
 
-                try:
-                    # print(u_l[0],'ulululul')
-                    det_html = requests.get(u_l[0], headers=headers, verify=False, timeout=5).content.decode('utf-8')
-                    det_html = html.unescape(det_html)
-                except:
-                    det_html = requests.get(u_l[0], headers=headers, verify=False, timeout=5).content.decode('GB18030')
-                    det_html = html.unescape(det_html)
+                # try:
+                #     # print(u_l[0],'ulululul')
+                #     det_html = requests.get(u_l[0], headers=headers, verify=False, timeout=5).content.decode('utf-8')
+                #     det_html = html.unescape(det_html)
+                # except:
+                #     det_html = requests.get(u_l[0], headers=headers, verify=False, timeout=5).content.decode('GB18030')
+                #     det_html = html.unescape(det_html)
 
                 # print(det_html,f'------------------{det_html}--------------------')
 
-                content, pre_content = content_ex(det_html, key=0, url_tag=self.url_tag)
+                content, pre_content = content_ex(self.det_html, key=0, url_tag=self.url_tag)
 
-                title = title_ex_total(content, det_html)
+                title = title_ex_total(content, self.det_html)
 
                 project_name = project_name_ex(content, title)
 
-                project_num = project_num_ex(content, url_tag=self.url_tag, det_html=det_html)
+                project_num = project_num_ex(content, url_tag=self.url_tag, det_html=self.det_html)
 
-                date = date_ex(det_html, content)
+                date = date_ex(self.det_html, content)
                 print(date)
                 # date = '0000-00-00'
 
@@ -93,7 +103,7 @@ class Save_data():
 
                 town = town_s(address)
 
-                budget_amount = budget_amount_ex(content, det_html, self.url_tag, self.table_name)
+                budget_amount = budget_amount_ex(content, self.det_html, self.url_tag, self.table_name)
 
                 comp_contact = comp_contact_ex(content)
 
@@ -109,9 +119,9 @@ class Save_data():
 
                 agency_tel = agency_all[3]
 
-                # table = table_ex(det_html)
+                # table = table_ex(self.det_html)
                 # print(table, 'table')
-                win_money = win_money_all(content, det_html, self.url_tag)
+                win_money = win_money_all(content, self.det_html, self.url_tag)
                 print(win_money, 'win_money')
 
                 type = type_ex(title, content, win_money)
@@ -122,7 +132,7 @@ class Save_data():
 
                 subcontract = subcontract_ex(content)
 
-                win_bider = winning_bidder_all(content, det_html, self.url_tag)
+                win_bider = winning_bidder_all(content, self.det_html, self.url_tag)
 
                 pro = pro_ex(content)
 
@@ -131,7 +141,7 @@ class Save_data():
 
                 project_id = proj_id_ex(u_l[0], self.url_tag, type)
 
-                # print(det_html)
+                # print(self.det_html)
                 # print(content, '\n')
                 # print(title, 'title')
                 # print(project_name, '22222222222')
@@ -227,7 +237,19 @@ class Save_data():
                     self.d_save.update(table='t_bid', data=dict_save, id=bid_id)
 
                 if type == 3 or type == 4:
-                    pkg_ex(pre_content, bid_id, self.d_save)
+                    try:
+                        # pkg_ex(pre_content,bid_id,d_save)
+                        pkg_list = yzb_pkg_update.pkg_ex(pre_content, bid_id)
+                        yzb_pkg_update.save_package(pkg_list, self.d_save)
+
+                        win_bider_pkg = yzb_pkg_update.win_bider_to_str(pkg_list)
+                        print(win_bider_pkg, '------------win_bider_pkg-------------')
+                        if win_bider_pkg:
+                            notnull_dict(win_bider_pkg, dict_save, 'winning_bidder')
+                        else:
+                            notnull_dict(win_bider, dict_save, 'winning_bidder')
+                    except:
+                        logger.error(sys.exc_info())
 
                 # 品目标签
                 itemSort(title, self.d_save, bid_id)
@@ -239,7 +261,7 @@ class Save_data():
                 #     bid_id = None
                 # self.d_save.delete_where('t_bid_content', 'title', title)
 
-                c_html = content_html_ex(det_html, self.url_tag, page_url=u_l[0])
+                c_html = content_html_ex(self.det_html, self.url_tag, page_url=u_l[0])
                 # print(c_html, 'c_html')
                 if c_html == '空':
                     c_html = None
@@ -1588,7 +1610,7 @@ class Save_data():
     @retry(stop_max_attempt_number=2)
     def html_retry(self, url='', n=0, ip_list=None):
         # time.sleep(0.5)
-        proxies = ip_proxy.proxy_amount(ip_list)
+        proxies = yzb_ip_proxy.proxy_amount(ip_list)
         logger.info(proxies)
 
         headers = {}
@@ -1616,7 +1638,7 @@ class Save_data():
 
     def save_zcy(self):
         n = 0
-        ip_list = ip_proxy.proxy_ip2()
+        ip_list = yzb_ip_proxy.proxy_ip2()
         mq_list = []
 
         u_list = [[i[0], i[1], i[2]] for i in self.url_list]
@@ -3200,7 +3222,7 @@ class Save_data():
         }
 
     def save_page_fj(self):
-        from tools_monitor import AES_code
+        import yzb_AES_code
         global dict_MQ
 
         mq_list = []
@@ -3244,7 +3266,7 @@ class Save_data():
                                          timeout=5).json()
                 # print(det_html,'det_html')
                 det_html_AES = det_html['Data']
-                real_html = re.sub('}(.*?)$', '}', AES_code.decrypt(det_html_AES))
+                real_html = re.sub('}(.*?)$', '}', yzb_AES_code.decrypt(det_html_AES))
 
                 # print(real_html)
                 real_html = json.loads(real_html)
@@ -3539,8 +3561,8 @@ class Save_data_proxy():
                 except Exception:
                     print('出错啦')
                     # logger.error(sys.exc_info())
-                    ip_list = ip_proxy.proxy_ip(1)
-                    proxies = ip_proxy.proxy_amount(ip_list)
+                    ip_list = yzb_ip_proxy.proxy_ip(1)
+                    proxies = yzb_ip_proxy.proxy_amount(ip_list)
                     retry_count -= 1
 
         else:
@@ -3557,8 +3579,8 @@ class Save_data_proxy():
         mq_list = []
         u_list = [[i[0], i[1], i[2]] for i in self.url_list]
 
-        ip_list = ip_proxy.proxy_ip(10)
-        proxies = ip_proxy.proxy_amount(ip_list)
+        ip_list = yzb_ip_proxy.proxy_ip(10)
+        proxies = yzb_ip_proxy.proxy_amount(ip_list)
         for u_l in u_list:
             print(u_l[0])
             flag = 0
