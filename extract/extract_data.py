@@ -1006,7 +1006,7 @@ class Save_data():
     def save_page_chongqing(self):
         global dict_MQ
         n = 0
-        ip_list = ip_proxy.proxy_ip2()
+        ip_list = yzb_ip_proxy.proxy_ip2()
         mq_list = []
         u_list = [[i[0], i[1], i[2], i[3]] for i in self.url_list]
         for u_l in u_list:
@@ -1021,7 +1021,7 @@ class Save_data():
                 dict_content = {}
                 headers = {}
                 if n >= 30:
-                    ip_list = ip_proxy.proxy_ip2()
+                    ip_list = yzb_ip_proxy.proxy_ip2()
                     n = 0
                 user_agent_list = [
                     "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
@@ -1652,7 +1652,7 @@ class Save_data():
                 dict_content = {}
 
                 if n >= 40:
-                    ip_list = ip_proxy.proxy_ip2()
+                    ip_list = yzb_ip_proxy.proxy_ip2()
                     n = 0
                 all_html = self.html_retry(url=u_l[0], n=n, ip_list=ip_list)
 
@@ -4107,122 +4107,123 @@ class Save_data_proxy():
         print('---------------------------------`--------------------')
 
 
-class SavePart():
-    def __init__(self, d_save=None, dict_url=None, dict_content=None, logger=None, url_list=None, web_id=None):
-        self.d_save = d_save
-        self.dict_url = dict_url
-        self.dict_content = dict_content
-        self.logger = logger
-        self.url_list = url_list
-        self.web_id = web_id
+# class SavePart():
+#
+#     def __init__(self, d_save=None, dict_url=None, dict_content=None, logger=logger, url_list=None, web_id=None):
+#         self.d_save = d_save
+#         self.dict_url = dict_url
+#         self.dict_content = dict_content
+#         self.logger = logger
+#         self.url_list = url_list
+#         self.web_id = web_id
+#
+#     # 详情页url存储逻辑
+#     def url_save_part(self, det_url='', mission_id='', dict_url=None, web_table=None, extra=None):
+#         try:
+#             id = worker.get_id()
+#             # print(id)
+#             notnull_dict(str(id), dict_url, 'id')
+#             notnull_dict(det_url, dict_url, 'page_url')
+#             notnull_dict(str(mission_id), dict_url, 'mission_id')
+#             if extra:
+#                 notnull_dict(str(extra), dict_url, 'extra')
+#             try:
+#                 # 在分表中去重，通过查询有没有
+#                 count = self.d_save.select_where('count(*)', web_table, 'page_url=' + '"' + det_url + '"')[0][0]
+#                 if not count:
+#                     # 在临时表中去重，存不进去会报错
+#                     self.d_save.insert('t_website_page', dict_url)
+#                     # self.d_save.commit_insert()
+#                     # print(id)
+#                 # self.d_save.insert('t_website_page', dict_url)
+#                 # self.d_save.commit_insert()
+#             except:
+#                 # logger.error(sys.exc_traceback)
+#                 url_id = self.d_save.select_where('id', 't_website_page', 'page_url=' + '"' + det_url + '"')[0][0]
+#                 # self.d_save.commit_insert()
+#                 del dict_url['id']
+#                 timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+#                 notnull_dict(timeNow, dict_url, 'update_time')
+#                 self.d_save.update(table='t_website_page', data=dict_url, id=url_id)
+#                 # self.d_save.commit_insert()
+#         except:
+#             # logger.exception(sys.exc_info())
+#             self.logger.error(sys.exc_info())
+#             # print(e,'111111111')
 
-    # 详情页url存储逻辑
-    def url_save_part(self, det_url='', mission_id='', dict_url=None, web_table=None, extra=None):
-        try:
-            id = worker.get_id()
-            # print(id)
-            notnull_dict(str(id), dict_url, 'id')
-            notnull_dict(det_url, dict_url, 'page_url')
-            notnull_dict(str(mission_id), dict_url, 'mission_id')
-            if extra:
-                notnull_dict(str(extra), dict_url, 'extra')
-            try:
-
-                count = self.d_save.select_where('count(*)', web_table, 'page_url=' + '"' + det_url + '"')[0][0]
-                if not count:
-                    # 没用？？？
-                    self.d_save.insert('t_website_page', dict_url)
-                    self.d_save.commit_insert()
-                    # print(id)
-                # self.d_save.insert('t_website_page', dict_url)
-                # self.d_save.commit_insert()
-            except:
-                # logger.error(sys.exc_traceback)
-                url_id = self.d_save.select_where('id', 't_website_page', 'page_url=' + '"' + det_url + '"')[0][0]
-                # self.d_save.commit_insert()
-                del dict_url['id']
-                timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-                notnull_dict(timeNow, dict_url, 'update_time')
-                self.d_save.update(table='t_website_page', data=dict_url, id=url_id)
-                self.d_save.commit_insert()
-        except:
-            # logger.exception(sys.exc_info())
-            self.logger.error(sys.exc_info())
-            # print(e,'111111111')
-
-    def bid_save_part(self, dict_save, title):
-        try:
-            # count = self.d_save.select_where('count(*)','t_bid','title="{}" and website_id <> 1'.format(title))
-            #
-            # if count:
-            #     continue
-            bid_id = worker.get_id()
-            notnull_dict(str(bid_id), dict_save, 'id')
-            self.d_save.insert('t_bid', dict_save)
-            # self.self.d_save.commit_insert()
-            print(bid_id)
-            flag = 1
-        except:
-            flag = 1
-            # self.logger.error(sys.exc_info())
-            bid_id = self.d_save.select_where('id', 't_bid',
-                                              'title=' + '"' + title + '"' + ' and ' + 'project_id=' + '"' + projid + '"')[
-                0][0]
-            # self.self.d_save.commit_insert()
-            timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            del dict_save['id']
-            notnull_dict(timeNow, dict_save, 'update_time')
-            notnull_dict('2', dict_save, 'index_status')
-            notnull_dict('0', dict_save, 'index_status_reindex')
-            self.d_save.update(table='t_bid', data=dict_save, id=bid_id)
-
-        # 品目标签
-        item_save(items, self.d_save, bid_id)
-
-        # try:
-        #     bid_id = self.d_save.select_where('id','t_bid','title='+'"'+title+'"')[0][0]
-        #     print(bid_id)
-        # except:
-        #     bid_id = None
-        c_html = content_html_ex(det_html, url_tag)
-        # print(c_html, 'c_html')
-        if c_html == '空':
-            c_html = None
-        # notnull_dict(date, dict_content, 'project_date')
-        notnull_dict(html.escape(c_html), dict_content, 'content')
-        notnull_dict(html.escape(content), dict_content, 'pure_content')
-        # notnull_dict(title, dict_content, 'title')
-        notnull_dict(str(bid_id), dict_content, 'bid_id')
-        # print(dict_content,'oooooo')
-        try:
-            content_id = worker.get_id()
-            notnull_dict(str(content_id), dict_content, 'id')
-            self.d_save.insert('t_bid_content', dict_content)
-            self.d_save.commit_insert()
-            print(content_id, 'content_id')
-        except:
-            # self.logger.error(sys.exc_info())
-            content_id = self.d_save.select_where('id', 't_bid_content',
-                                                  'bid_id=' + str(bid_id))[
-                0][0]
-            # self.self.d_save.commit_insert()
-            del dict_content['id']
-            timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
-            notnull_dict(timeNow, dict_content, 'update_time')
-            self.d_save.update(table='t_bid_content', data=dict_content, id=content_id)
-            self.d_save.commit_insert()
-        if flag == 1:
-            # 消息队列
-            mq_list.append(bid_id)
-            if len(mq_list) >= 500:
-                ms = RabbitMQ('admin1', 'admin1', 'subscribe_queue-t')
-                ms.message_send(mq_list)
-                mq_list = []
-        self.d_save.update_one('t_website_page', 'is_crawled=1', 'id=' + str(page_id))
-        with open('page_log.txt', 'w') as w:
-            w.writelines(['page:' + str(u_l[1]) + '\n'])
-        print('---------------------------------`--------------------')
-        n += 1
+    # def bid_save_part(self, dict_save, title):
+    #     try:
+    #         # count = self.d_save.select_where('count(*)','t_bid','title="{}" and website_id <> 1'.format(title))
+    #         #
+    #         # if count:
+    #         #     continue
+    #         bid_id = worker.get_id()
+    #         notnull_dict(str(bid_id), dict_save, 'id')
+    #         self.d_save.insert('t_bid', dict_save)
+    #         # self.self.d_save.commit_insert()
+    #         print(bid_id)
+    #         flag = 1
+    #     except:
+    #         flag = 1
+    #         # self.logger.error(sys.exc_info())
+    #         bid_id = self.d_save.select_where('id', 't_bid',
+    #                                           'title=' + '"' + title + '"' + ' and ' + 'project_id=' + '"' + projid + '"')[
+    #             0][0]
+    #         # self.self.d_save.commit_insert()
+    #         timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+    #         del dict_save['id']
+    #         notnull_dict(timeNow, dict_save, 'update_time')
+    #         notnull_dict('2', dict_save, 'index_status')
+    #         notnull_dict('0', dict_save, 'index_status_reindex')
+    #         self.d_save.update(table='t_bid', data=dict_save, id=bid_id)
+    #
+    #     # 品目标签
+    #     item_save(items, self.d_save, bid_id)
+    #
+    #     # try:
+    #     #     bid_id = self.d_save.select_where('id','t_bid','title='+'"'+title+'"')[0][0]
+    #     #     print(bid_id)
+    #     # except:
+    #     #     bid_id = None
+    #     c_html = content_html_ex(self.det_html, url_tag)
+    #     # print(c_html, 'c_html')
+    #     if c_html == '空':
+    #         c_html = None
+    #     # notnull_dict(date, dict_content, 'project_date')
+    #     notnull_dict(html.escape(c_html), dict_content, 'content')
+    #     notnull_dict(html.escape(content), dict_content, 'pure_content')
+    #     # notnull_dict(title, dict_content, 'title')
+    #     notnull_dict(str(bid_id), dict_content, 'bid_id')
+    #     # print(dict_content,'oooooo')
+    #     try:
+    #         content_id = worker.get_id()
+    #         notnull_dict(str(content_id), dict_content, 'id')
+    #         self.d_save.insert('t_bid_content', dict_content)
+    #         self.d_save.commit_insert()
+    #         print(content_id, 'content_id')
+    #     except:
+    #         # self.logger.error(sys.exc_info())
+    #         content_id = self.d_save.select_where('id', 't_bid_content',
+    #                                               'bid_id=' + str(bid_id))[
+    #             0][0]
+    #         # self.self.d_save.commit_insert()
+    #         del dict_content['id']
+    #         timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
+    #         notnull_dict(timeNow, dict_content, 'update_time')
+    #         self.d_save.update(table='t_bid_content', data=dict_content, id=content_id)
+    #         self.d_save.commit_insert()
+    #     if flag == 1:
+    #         # 消息队列
+    #         mq_list.append(bid_id)
+    #         if len(mq_list) >= 500:
+    #             ms = RabbitMQ('admin1', 'admin1', 'subscribe_queue-t')
+    #             ms.message_send(mq_list)
+    #             mq_list = []
+    #     self.d_save.update_one('t_website_page', 'is_crawled=1', 'id=' + str(page_id))
+    #     with open('page_log.txt', 'w') as w:
+    #         w.writelines(['page:' + str(u_l[1]) + '\n'])
+    #     print('---------------------------------`--------------------')
+    #     n += 1
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@
 # useful for handling different item types with a single interface
 from yzb_tools.yzb_db_connect import *
 from yzb_conf import config as conf
+from yzb_page_url_ex import SavePart
 worker = IdWorker(sst.DATACENTER_ID,sst.WORKER_ID,sst.SEQUENCE)
 import pymongo
 
@@ -24,18 +25,25 @@ class CcgpGovCnPipeline():
     def process_item(self, item, spider):
         dict_url_save = {}
         dict_html_save = {}
-        id = worker.get_id()
 
+        page_id = worker.get_id()
 
-        notnull_dict(item['page_url'], dict_url_save, 'page_url')
-        notnull_dict(str(id), dict_url_save, 'id')
-        notnull_dict('7', dict_url_save, 'mission_id')
-        page_id = self.d_save.insert('t_website_page',dict_url_save)
+        save_part = SavePart(d_save=self.d_save)
+        save_part.url_save_part(det_url=item['page_url'], mission_id='7', dict_url=dict_url_save,
+                                web_table='t_website_page_1',page_id=page_id)
+
+        # id = worker.get_id()
+        #
+        #
+        # notnull_dict(item['page_url'], dict_url_save, 'page_url')
+        # notnull_dict(str(id), dict_url_save, 'id')
+        # notnull_dict('7', dict_url_save, 'mission_id')
+        # self.d_save.insert('t_website_page',dict_url_save)
 
         notnull_dict(item['title'], dict_html_save, 'title')
         notnull_dict(item['date'], dict_html_save, 'date')
         notnull_dict(item['html'], dict_html_save, 'html')
-        notnull_dict(page_id, dict_html_save, 'page_id')
+        notnull_dict(str(page_id), dict_html_save, 'page_id')
         self.d_save.insert('t_bid_html', dict_html_save)
         self.d_save.commit_insert()
 
