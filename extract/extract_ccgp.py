@@ -295,9 +295,10 @@ def money_filter(table_money=None,content=None,det_html=None,dict_save=None,
 
 
 def get_html(page_id):
-    html = d_save.runSql_select(f'select html from t_html where page_id = {page_id}')
-    if html != []:
-        return html[0]
+    html = d_save.runSql_select(f'select html from t_bid_html where page_id = {page_id}')
+    # print(html,'html')
+    if html != ():
+        return html[0][0]
 
 
 
@@ -311,31 +312,26 @@ def save_page(url_list):
         'Host': 'search.ccgp.gov.cn',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3141.8 Safari/537.36'
     }
-    # n = 0
-    # for i in range(n,len(det_url_list)):
 
-        # det_url = det_url_list[0]
 
     u_list = [[i[0], i[1], i[2]] for i in url_list]
-    # u_list = ['http://www.ccgp.gov.cn/cggg/dfgg/zbgg/202103/t20210303_15976714.htm',1367006969550077952,1]
-    # print(u_list)
     n = 0
-    ip_list = yzb_ip_proxy.proxy_ip2()
+
+
     for u_l in u_list:
         flag = 0
         logger.info(u_l[0])
-        # task_list = requests.get(u_l[0])
-        # for i in task_list:
+
+        page_id = u_l[1]
+
         try:
             dict_save = {}
             dict_content = {}
 
-            if n >= 30:
-                ip_list = yzb_ip_proxy.proxy_ip2()
-                n = 0
-            det_html = html_retry(url=u_l[0],n=n,ip_list=ip_list)
+            # det_html = html_retry(url=u_l[0],n=n,ip_list=ip_list)
+            det_html = get_html(page_id)
 
-            dict_save,items = ccgp_table_ex(dict_save, det_html,u_l[1])
+            dict_save,items = ccgp_table_ex(dict_save, det_html,page_id)
             # print(items,'items')
             # print(det_html)
             # content1 = re.findall('.*<span.*>(.+)</span>.*',content)
@@ -789,8 +785,8 @@ def main():
 
     # dateNow = time.strftime('%Y%m', time.localtime(time.time()))
     # print(dateNow)
-    det_url_list_new = d_save.select_web_where('page_url like "%/t2022%" and a.is_crawled = 0 and a.mission_id = 7')
-    # det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and a.id = 1999999999991')
+    # det_url_list_new = d_save.select_web_where('page_url like "%/t2022%" and a.is_crawled = 0 and a.mission_id = 7')
+    det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and a.id = 1572476722501648384')
     # det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and page_url like "%/t202208%"')
     save_page(det_url_list_new)
 
@@ -823,6 +819,7 @@ if __name__ == '__main__':
     main()
     contro.spider_closed()
 
+    # get_html('111')
 
 
 

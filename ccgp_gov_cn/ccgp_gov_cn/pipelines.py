@@ -29,8 +29,12 @@ class CcgpGovCnPipeline():
         page_id = worker.get_id()
 
         save_part = SavePart(d_save=self.d_save)
-        save_part.url_save_part(det_url=item['page_url'], mission_id='7', dict_url=dict_url_save,
+        p_id = save_part.url_save_part(det_url=item['page_url'], mission_id='7', dict_url=dict_url_save,
                                 web_table='t_website_page_1',page_id=page_id)
+        if p_id:
+            page_id = p_id
+            self.d_save.runSql_excute(f'delete from t_bid_html where page_id={page_id}')
+
 
         # id = worker.get_id()
         #

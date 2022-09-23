@@ -39,6 +39,7 @@ class SavePart():
                 timeNow = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
                 notnull_dict(timeNow, dict_url, 'update_time')
                 self.d_save.update(table='t_website_page', data=dict_url, id=url_id)
+                return url_id
                 # self.d_save.commit_insert()
         except:
             # logger.exception(sys.exc_info())

@@ -45,9 +45,9 @@ class TestConfig(Config):
     password = 'jie8#jlfsjd'
     db = 'crawl_test'
     charset = 'utf8'
-    ml_file = '/crawler/crawler/yzb_ml_code/ml_purcharser_train.xlsx'
-    item_file = '/crawler/crawler/yzb_ml_code/item_train.xlsx'
-    stop_word = '/crawler/crawler/yzb_ml_code/stopwords.txt'
+    ml_file = '/crawler/YZB_Spider_Reborn/yzb_tools/yzb_ml_code/ml_purcharser_train.xlsx'
+    item_file = '/crawler/YZB_Spider_Reborn/yzb_tools/yzb_ml_code/item_train.xlsx'
+    stop_word = '/crawler/YZB_Spider_Reborn/yzb_tools/yzb_ml_code/stopwords.txt'
     crawler_file = '/crawler/crawler/'
     model = '/crawler/crawler/'
     dollar = 7
@@ -120,5 +120,5 @@ mapping = {
 }
 
 # 一键切换环境
-APP_ENV = os.environ.get('APP_ENV', 'development').lower()  # 设置环境变量
+APP_ENV = os.environ.get('APP_ENV', 'test').lower()  # 设置环境变量
 config = mapping[APP_ENV]()  # 获取指定的环境
