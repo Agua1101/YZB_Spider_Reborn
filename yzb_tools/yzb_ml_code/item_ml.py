@@ -3,13 +3,13 @@ from keras.layers import Dense, Input, Flatten, Dropout
 from keras.layers import Conv1D, MaxPooling1D, Embedding
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
-from keras.utils import to_categorical
+# from keras.utils import to_categorical
 import keras
 import numpy as np
 import pandas as pd
 import jieba
-from db_connect import *
-from conf import config as conf
+from yzb_db_connect import *
+from yzb_conf import config as conf
 
 df = pd.read_excel(conf.item_file)
 with open(conf.stop_word,encoding='utf-8')as r:

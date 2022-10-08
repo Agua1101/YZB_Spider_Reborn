@@ -1,7 +1,7 @@
 import time
 import logging
 
-from exceptions import InvalidSystemClock
+from snow_id.exceptions import InvalidSystemClock
 
 
 # 64位ID的划分

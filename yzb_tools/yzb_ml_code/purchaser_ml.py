@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import jieba as jb
 import re
-from conf import config as conf
+from yzb_conf import config as conf
 # from sklearn.externals import joblib
 
 plt.rcParams['font.sans-serif'] = ['SimHei']

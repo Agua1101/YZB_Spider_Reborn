@@ -45,8 +45,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 'pinMu': '0',
                 'bidType': '0',
                 'kw': '',
-                'start_time': '2022:08:02',
-                'end_time': '2022:08:02',
+                'start_time': '2022:08:20',
+                'end_time': '2022:08:20',
                 'timeType': '6'
             }
             # headers = {
@@ -57,7 +57,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             # }
 
 
-            yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params,callback=self.list_parse,dont_filter=True,)
+            yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params,callback=self.list_parse,dont_filter=True)
 
 
 

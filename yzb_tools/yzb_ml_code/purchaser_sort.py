@@ -1,9 +1,9 @@
 #coding=UTF-8
 import re
 
-from db_connect import *
+from yzb_tools.yzb_db_connect import *
 from yzb_ml_code.purchaser_ml import myPredict
-from conf import config as conf
+from yzb_conf import config as conf
 # import item_ml
 from classifier_multi_label_textcnn import predict
 from snow_factory import IdWorker

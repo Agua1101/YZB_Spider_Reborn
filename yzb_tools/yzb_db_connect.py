@@ -7,8 +7,8 @@ import os.path
 import time
 import sys
 import html
-from snow_factory import IdWorker
-import snow_settings as sst
+from snow_id.snow_factory import IdWorker
+import snow_id.snow_settings as sst
 
 
 # 实例化雪花ID，sst为配置文件
@@ -61,10 +61,10 @@ class MySQL():
         # print(sql_query)
 
         self.cursor.execute(sql_query)
-        bid_id = self.db.insert_id()
+        data_id = self.db.insert_id()
 
         print('1')
-        return bid_id
+        return data_id
 
 
 
