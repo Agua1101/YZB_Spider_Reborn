@@ -194,6 +194,7 @@ class Save_data():
                 # self.d_save.delete_where('t_bid', 'title', title)
                 # print(dict_save,'aaaaaaaaa')
 
+
                 try:
 
                     # 将插入t_bid表
