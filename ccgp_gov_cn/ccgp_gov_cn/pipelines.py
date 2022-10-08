@@ -27,12 +27,13 @@ class CcgpGovCnPipeline():
         dict_html_save = {}
 
         page_id = worker.get_id()
-
+        # 保存t_website_page
         save_part = SavePart(d_save=self.d_save)
         p_id = save_part.url_save_part(det_url=item['page_url'], mission_id='7', dict_url=dict_url_save,
                                 web_table='t_website_page_1',page_id=page_id)
         if p_id:
             page_id = p_id
+            # 如果page_url有重复要同时删除t_bid_html表中对应的数据
             self.d_save.runSql_excute(f'delete from t_bid_html where page_id={page_id}')
 
 
@@ -44,6 +45,7 @@ class CcgpGovCnPipeline():
         # notnull_dict('7', dict_url_save, 'mission_id')
         # self.d_save.insert('t_website_page',dict_url_save)
 
+        # 保存t_bid_html
         notnull_dict(item['title'], dict_html_save, 'title')
         notnull_dict(item['date'], dict_html_save, 'date')
         notnull_dict(item['html'], dict_html_save, 'html')

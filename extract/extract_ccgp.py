@@ -786,8 +786,8 @@ def main():
     # dateNow = time.strftime('%Y%m', time.localtime(time.time()))
     # print(dateNow)
     # det_url_list_new = d_save.select_web_where('page_url like "%/t2022%" and a.is_crawled = 0 and a.mission_id = 7')
-    det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and a.id = 1572476722501648384')
-    # det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and page_url like "%/t202208%"')
+    # det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and a.id = 1572476722501648384')
+    det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and page_url like "%/t202210%"')
     save_page(det_url_list_new)
 
     # det_url_list_old = d_save.select_web_where('page_url like "%/t202108%" and a.is_crawled = 0 and a.mission_id = 7')
