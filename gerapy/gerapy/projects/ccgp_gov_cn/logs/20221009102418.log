@@ -1,0 +1,496 @@
+ERROR - 2022-10-09 10:24:26,853 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:34,365 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:36,243 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:36,904 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:37,532 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:38,266 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:38,708 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
+ERROR - 2022-10-09 10:24:39,152 - process: 1644 - utils.py - gerapy.server.core.utils - 564 - utils - no such table: authtoken_token
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.OperationalError: no such table: authtoken_token
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\gerapy\server\core\utils.py", line 562, in wrapper
+    result = func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 227, in user
+    self._authenticate()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\request.py", line 380, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 402, in get
+    num = len(clone)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 256, in __len__
+    self._fetch_all()
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 1242, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\query.py", line 55, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\models\sql\compiler.py", line 1142, in execute_sql
+    cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 99, in execute
+    return super().execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 76, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\utils.py", line 89, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "c:\users\ningmei\pycharmprojects\pythonproject\venv\lib\site-packages\django\db\backends\sqlite3\base.py", line 383, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.OperationalError: no such table: authtoken_token
