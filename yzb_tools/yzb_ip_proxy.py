@@ -337,8 +337,9 @@ def delete_proxy(proxy):
 
 
 if __name__ == '__main__':
-    ip_list = proxy_ip(8)
-    print(ip_list)
+    print(get_proxy())
+    # ip_list = proxy_ip(8)
+    # print(ip_list)
     # main()
     # proxy_ip2()
     # check_ip2()

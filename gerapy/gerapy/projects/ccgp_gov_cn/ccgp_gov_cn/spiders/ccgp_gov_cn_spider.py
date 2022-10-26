@@ -46,8 +46,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 'pinMu': '0',
                 'bidType': '0',
                 'kw': '',
-                'start_time': '2022:09:20',
-                'end_time': '2022:09:20',
+                'start_time': '2022:10:20',
+                'end_time': '2022:10:20',
                 'timeType': '6'
             }
             # headers = {
@@ -57,7 +57,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3141.8 Safari/537.36'
             # }
             retry_count = 2
-            proxy = ip_proxy.get_proxy().get('proxy')
+            proxy = yzb_ip_proxy.get_proxy().get('proxy')
             while retry_count > 0:
                 try:
 
@@ -66,7 +66,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 except Exception:
                     logger.error(sys.exc_info())
                     retry_count -= 1
-            ip_proxy.delete_proxy(proxy)
+            yzb_ip_proxy.delete_proxy(proxy)
 
 
 

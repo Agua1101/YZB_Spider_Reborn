@@ -7,13 +7,18 @@ from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+from scrapy.downloadermiddlewares.retry import RetryMiddleware
+from scrapy.utils.response import response_status_message
 import yzb_ip_proxy
 import random
 
-class ProcessRequest(object):
-    def process_request(self, request, spider):
-        ip_list = yzb_ip_proxy.proxy_ip(2)
-        request.meta.update({'proxy':f"http://agua1101:pgftac5x@{random.choice(ip_list)}/"})
+
+
+
+
+class ProcessRequest(RetryMiddleware):
+    def process_request(self, request, response, spider):
+        return None
 
 
 
@@ -50,6 +55,8 @@ class CcgpGovCnSpiderMiddleware:
 
         # Should return either None or an iterable of Request or item objects.
         pass
+
+
 
     def process_start_requests(self, start_requests, spider):
         # Called with the start requests of the spider, and works
