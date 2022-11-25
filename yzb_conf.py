@@ -24,11 +24,11 @@ class ProductionConfig(Config):# 生产环境
     dollar = 7
 
 class DevelopmentConfig(Config):  # 开发环境
-    host = '39.107.25.250'
-    port = 3306
+    host = '172.17.60.111'
+    port = 3316
     user = 'root'
     password = 'jie8#jlfsjd'
-    db = 'crawl_test'
+    db = 'bid'
     charset = 'utf8'
     ml_file = 'D:\\办公\\yizhaobiao\\my_git\\crawler\\yzb_ml_code\\ml_purcharser_train.xlsx'
     item_file = 'D:\\办公\\yizhaobiao\\my_git\\crawler\\yzb_ml_code\\item_train.xlsx'
@@ -39,11 +39,11 @@ class DevelopmentConfig(Config):  # 开发环境
 
 
 class TestConfig(Config):
-    host = '39.107.25.250'
-    port = 3306
+    host = '172.17.60.111'
+    port = 3316
     user = 'root'
     password = 'jie8#jlfsjd'
-    db = 'crawl_test'
+    db = 'bid'
     charset = 'utf8'
     ml_file = '/crawler/YZB_Spider_Reborn/yzb_tools/yzb_ml_code/ml_purcharser_train.xlsx'
     item_file = '/crawler/YZB_Spider_Reborn/yzb_tools/yzb_ml_code/item_train.xlsx'
