@@ -7,10 +7,10 @@ from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
-from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.utils.response import response_status_message
 import yzb_ip_proxy
 import random
+import time
 
 
 class MyRetryMiddleware(RetryMiddleware):
@@ -45,10 +45,11 @@ class MyRetryMiddleware(RetryMiddleware):
 
             return self._retry(request, exception, spider)
 
-
-class ProcessRequest(RetryMiddleware):
-    def process_request(self, request, response, spider):
-        return None
+# 在请求前调用
+class ProcessRequest(object):
+    def process_request(self, request, spider):
+        proxy = yzb_ip_proxy.get_proxy().get('proxy')
+        request.meta['proxy'] = f"http://{proxy}"
 
 
 

@@ -16,6 +16,10 @@ NEWSPIDER_MODULE = 'ccgp_gov_cn.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ccgp_gov_cn (+http://www.yourdomain.com)'
 
+# 重试次数
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+DOWNLOAD_TIMEOUT = 10
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 

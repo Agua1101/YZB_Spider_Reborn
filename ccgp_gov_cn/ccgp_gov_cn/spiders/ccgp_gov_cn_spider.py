@@ -36,7 +36,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
         url = 'http://search.ccgp.gov.cn/bxsearch'
 
         start_time, end_time = self.get_date()
-        for i in range(1, 10):
+        for i in range(1, 2):
             params = {
                 'searchtype': '1',
                 'page_index': str(i),
@@ -55,17 +55,14 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3141.8 Safari/537.36'
             # }
             retry_count = 2
-            proxy = yzb_ip_proxy.get_proxy().get('proxy')
-            while retry_count > 0:
-                try:
 
-                    yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params, callback=self.list_parse,
+
+
+            yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params, callback=self.list_parse,
                                              dont_filter=True)
 
-                except Exception:
-                    logger.error(sys.exc_info())
-                    retry_count -= 1
-            yzb_ip_proxy.delete_proxy(proxy)
+
+
 
 
 

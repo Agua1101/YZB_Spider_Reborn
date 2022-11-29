@@ -46,8 +46,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 'pinMu': '0',
                 'bidType': '0',
                 'kw': '',
-                'start_time': '2022:10:20',
-                'end_time': '2022:10:20',
+                'start_time': '2022:11:20',
+                'end_time': '2022:11:20',
                 'timeType': '6'
             }
             # headers = {
