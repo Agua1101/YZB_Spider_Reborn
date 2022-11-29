@@ -73,8 +73,8 @@ ITEM_PIPELINES = {
 }
 
 # MySQL数据库配置
-host = '39.107.25.250'
-port = 3306
+host = '172.17.60.111'
+port = 3316
 user = 'root'
 password = 'jie8#jlfsjd'
 db = 'crawl_test'

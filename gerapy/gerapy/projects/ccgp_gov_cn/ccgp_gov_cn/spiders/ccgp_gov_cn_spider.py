@@ -10,8 +10,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
     name = 'ccgp_gov_cn_spider'
 
     def __init__(self,name=None, **kwargs):
-        kwargs.pop('_job')  # 删除job
-        super().__init__(name, **kwargs)
+        kwargs.pop('_job')#删除job
+        super(CcgpGovCnSpiderSpider, self).__init__(name, **kwargs)#对两个变量进行使用
         self.headers = {
             # 'Cookie': 'JSESSIONID=EgPd86-6id_etA2QDV31Kks3FrNs-4gwHMoSmEZvnEktWIakHbV3!354619916; Hm_lvt_9f8bda7a6bb3d1d7a9c7196bfed609b5=1545618390; Hm_lpvt_9f8bda7a6bb3d1d7a9c7196bfed609b5=1545618390; td_cookie=2144571454; Hm_lvt_9459d8c503dd3c37b526898ff5aacadd=1545611064,1545618402,1545618414; Hm_lpvt_9459d8c503dd3c37b526898ff5aacadd=1545618495',
             'Cookie': 'Hm_lvt_9f8bda7a6bb3d1d7a9c7196bfed609b5=1657159792; Hm_lvt_9459d8c503dd3c37b526898ff5aacadd=1658819877; JSESSIONID=O4I50r8VN81k8-VOQ_PueAuF1NDX2xOBJHgSvSe-rDpQYgd7UQ-e!1179140079; Hm_lpvt_9459d8c503dd3c37b526898ff5aacadd=1658827822; Hm_lpvt_9f8bda7a6bb3d1d7a9c7196bfed609b5=1658827872',
@@ -46,8 +46,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 'pinMu': '0',
                 'bidType': '0',
                 'kw': '',
-                'start_time': '2022:11:20',
-                'end_time': '2022:11:20',
+                'start_time': '2022:11:10',
+                'end_time': '2022:11:10',
                 'timeType': '6'
             }
             # headers = {
@@ -57,16 +57,10 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
             #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3141.8 Safari/537.36'
             # }
             retry_count = 2
-            proxy = yzb_ip_proxy.get_proxy().get('proxy')
-            while retry_count > 0:
-                try:
 
-                    yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params,callback=self.list_parse,dont_filter=True)
 
-                except Exception:
-                    logger.error(sys.exc_info())
-                    retry_count -= 1
-            yzb_ip_proxy.delete_proxy(proxy)
+            yield scrapy.FormRequest(url=url, headers=self.headers, formdata=params, callback=self.list_parse,
+                                     dont_filter=True)
 
 
 

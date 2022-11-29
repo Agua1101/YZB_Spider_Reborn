@@ -10,10 +10,12 @@ from itemadapter import is_item, ItemAdapter
 import yzb_ip_proxy
 import random
 
+
+# 在请求前调用
 class ProcessRequest(object):
     def process_request(self, request, spider):
-        ip_list = yzb_ip_proxy.proxy_ip(2)
-        request.meta.update({'proxy':f"http://agua1101:pgftac5x@{random.choice(ip_list)}/"})
+        proxy = yzb_ip_proxy.get_proxy().get('proxy')
+        request.meta['proxy'] = f"http://{proxy}"
 
 
 

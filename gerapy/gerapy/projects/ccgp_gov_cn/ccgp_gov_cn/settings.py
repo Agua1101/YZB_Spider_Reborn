@@ -16,6 +16,11 @@ NEWSPIDER_MODULE = 'ccgp_gov_cn.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ccgp_gov_cn (+http://www.yourdomain.com)'
 
+
+# 重试次数
+RETRY_TIMES = 3
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+DOWNLOAD_TIMEOUT = 10
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
@@ -69,8 +74,8 @@ ITEM_PIPELINES = {
 }
 
 # MySQL数据库配置
-host = '39.107.25.250'
-port = 3306
+host = '172.17.60.111'
+port = 3316
 user = 'root'
 password = 'jie8#jlfsjd'
 db = 'crawl_test'
