@@ -38,8 +38,8 @@ class CcgpGovCnPipeline():
 
 
         # id = worker.get_id()
-        #
-        #
+        # #
+        # #
         # notnull_dict(item['page_url'], dict_url_save, 'page_url')
         # notnull_dict(str(id), dict_url_save, 'id')
         # notnull_dict('7', dict_url_save, 'mission_id')

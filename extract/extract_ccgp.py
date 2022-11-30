@@ -329,9 +329,12 @@ def save_page(url_list):
             dict_content = {}
 
             # det_html = html_retry(url=u_l[0],n=n,ip_list=ip_list)
-            det_html = get_html(page_id)
+            result = d_save.select_html(page_id)
+            det_html = result[0]
+            title = result[1]
+            date = result[2]
 
-            dict_save,items = ccgp_table_ex(dict_save, det_html,page_id)
+            dict_save,items = ccgp_table_ex(dict_save, det_html, page_id)
             # print(items,'items')
             # print(det_html)
             # content1 = re.findall('.*<span.*>(.+)</span>.*',content)
@@ -340,8 +343,8 @@ def save_page(url_list):
 
             content,pre_content = content_ex(det_html,url_tag=url_tag)
             # print('222222222222222222222')
-
-            title = title_ex_total(content, det_html)
+            if not title:
+                title = title_ex_total(content, det_html)
             # print(title, 'title')
             project_name = dict_save.get('project_name')
             if project_name == 'null':
@@ -350,10 +353,11 @@ def save_page(url_list):
             # print(project_name, '22222222222')
             project_num = project_num_ex(content,url_tag=url_tag)
             # print(project_num, '33333333333')
-            date = dict_save.get('project_date')
-            if date == 'null':
-                date = date_ex(det_html, content)
-                notnull_dict(date, dict_save, 'project_date')
+            if not date:
+                date = dict_save.get('project_date')
+                if date == 'null':
+                    date = date_ex(det_html, content)
+                    notnull_dict(date, dict_save, 'project_date')
 
             type = type_ex(title, content)
             # print(type, '55555555')
@@ -390,33 +394,6 @@ def save_page(url_list):
             money_filter(table_money=table_budget,content=content,det_html=det_html,dict_save=dict_save,
                  table_class_name = 'budget_money',content_money=content_budget)
 
-
-            # if budget_amount == 'null' :
-            #     budget_amount = budget_amount_ex(content, det_html)
-            #     if budget_amount == '空':
-            #         try:
-            #             # print(dict_save['bid_money'],'--------------------------')
-            #             notnull_dict('空', dict_save, 'budget_money')
-            #         except:
-            #             logger.error(sys.exc_info())
-            #     # elif float(budget_amount) > 100000000000:
-            #     #     budget_amount = str(float(budget_amount)/10000)
-            #     #     notnull_dict(budget_amount, dict_save, 'budget_money')
-            #     else:
-            #         notnull_dict(budget_amount, dict_save, 'budget_money')
-            # else:
-            #     table_budget_money = dict_save.get('budget_money')
-            #     print(table_budget_money, '99999999')
-            #     budget_amount = budget_amount_ex(content, det_html)
-            #     print(budget_amount)
-            #     if abs((float(table_budget_money.strip('"')) / float(budget_amount)) - 10000) < 10:
-            #         notnull_dict(budget_amount, dict_save, 'budget_money')
-            #     # elif float(table_budget_money.strip('"')) > 1000000000000:
-            #     #     budget_amount = budget_amount_ex(content, det_html)
-            #     #     if budget_amount != '空':
-            #     #         notnull_dict(budget_amount, dict_save, 'budget_money')
-            #     #     else:
-            #     #         notnull_dict(str(float(table_budget_money.strip('"'))/10000), dict_save, 'budget_money')
             # print(budget_amount, 'b_amount')
             # print(dict_save['budget_money'],'budget_money')
             comp_contact = dict_save.get('company_contact')
@@ -463,43 +440,7 @@ def save_page(url_list):
                          table_class_name='bid_money', content_money=content_bid)
 
 
-            # if win_money == 'null':
-            #
-            #     win_money = win_money_all(content, det_html)
-            #     if win_money == '空':
-            #         try:
-            #             # print(dict_save['budget_money'],'------------------------')
-            #             notnull_dict('空', dict_save, 'bid_money')
-            #         except:
-            #             logger.error(sys.exc_info())
-            #     # ppp项目金额本来就大
-            #     # elif float(win_money) > 100000000000:
-            #     #     win_money = str(float(win_money)/10000)
-            #     #     notnull_dict(win_money, dict_save, 'bid_money')
-            #     else:
-            #         notnull_dict(win_money, dict_save, 'bid_money')
-            # else:
-            #     print(dict_save.get('bid_money'),'--------------bid_money----------------2')
-            #     table_bid_money = dict_save.get('bid_money')
-            #     print(table_bid_money,'99999999')
-            #     win_money = win_money_all(content, det_html)
-            #     print(win_money)
-            #     if win_money == '空':
-            #         notnull_dict(table_bid_money.strip('"'), dict_save, 'bid_money')
-            #
-            #     elif abs((float(table_bid_money.strip('"')) / float(win_money)) - 10000) < 10:
-            #         notnull_dict(win_money, dict_save, 'bid_money')
-            #
-            #
-            #     # elif float(table_bid_money.strip('"')) > 1000000000000:
-            #     #     print(dict_save.get('bid_money'), '--------------bid_money----------------3')
-            #     #     # win_money = win_money_all(content, det_html)
-            #     #     if win_money != '空':
-            #     #         notnull_dict(win_money, dict_save, 'bid_money')
-            #     #     else:
-            #     #         notnull_dict(str(float(table_bid_money.strip('"')) / 10000), dict_save, 'bid_money')
-            # print(dict_save['bid_money'],'bid_money')
-            # print(win_money, 'win_money')
+
             # items = items_ex(title)
             # print(items, 'items')
             subject = subject_ex(title)
@@ -787,7 +728,7 @@ def main():
     # print(dateNow)
     # det_url_list_new = d_save.select_web_where('page_url like "%/t2022%" and a.is_crawled = 0 and a.mission_id = 7')
     # det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and a.id = 1572476722501648384')
-    det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and page_url like "%/t202210%"')
+    det_url_list_new = d_save.select_web_where('a.is_crawled = 0 and a.mission_id = 7 and page_url like "%/t202211%"')
     save_page(det_url_list_new)
 
     # det_url_list_old = d_save.select_web_where('page_url like "%/t202108%" and a.is_crawled = 0 and a.mission_id = 7')

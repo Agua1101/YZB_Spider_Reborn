@@ -233,6 +233,20 @@ class MySQL():
             print(e)
 
 
+    def select_html(self,page_id):
+        '''
+        从数据库搜索详情页html,title,date
+        '''
+
+        try:
+            self.cursor.execute(f'select html,title,date from t_bid_html where page_id = {page_id}')
+            result = self.cursor.fetchall()
+            if result != ():
+                return result[0]
+        except Exception as e:
+            print(e)
+
+
     def select_web_from_bid(self):
         sql_query = 'select a.page_url,a.id,b.website_id from t_website_page as a left join t_bid as b on a.id = b.page_id where b.project_date > "2020-08-08" and website_id = 41'
         try:
