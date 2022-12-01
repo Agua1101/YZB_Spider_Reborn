@@ -711,7 +711,19 @@ class FooError(ValueError):
 
 
 
+def show_time(func):
+    def wrapper():
+        star = time.process_time()
+        func()
+        end= time.process_time()
+        print('spend_time:',end-star)
+    return wrapper
 
+
+
+
+
+@show_time
 def main():
     #先运行save_page_url()爬取page_url再运行save_page(det_url_list)爬详情
     # timeNow = time.strftime('%Y-%m-%d 00:00:00', time.localtime(time.time()))
