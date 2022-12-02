@@ -260,11 +260,11 @@ def item_save(items,d_save,bid_id):
 # 金额筛选逻辑
 def money_filter(table_money=None,content=None,det_html=None,dict_save=None,
                  table_class_name = 'bid_money',content_money=None):
-
-    print(table_money,'table_money')
-    print(content_money,'content_money')
-
+    print(table_money, 'table_money')
+    print(content_money, 'content_money')
+    # 如果表格金额为空
     if table_money == 'null' or table_money == None:
+        # 如果正文金额为空直接保存空值否则保存正文金额
         if content_money == '空':
             try:
                 # print(dict_save['budget_money'],'------------------------')
@@ -277,18 +277,27 @@ def money_filter(table_money=None,content=None,det_html=None,dict_save=None,
         #     notnull_dict(win_money, dict_save, 'bid_money')
         else:
             notnull_dict(content_money, dict_save, table_class_name)
+    # 如果表格金额不为空
     else:
         print(table_money, f'--------------{table_class_name}----------------2')
+        # 如果正文金额也是空，保存表格金额
         if content_money == '空' or content_money == None or content_money == '0':
             notnull_dict(table_money.strip('"'), dict_save, table_class_name)
 
+        # 如果表格金额是0，保存正文金额
         elif float(table_money.strip('"')) == float(0):
             notnull_dict(content_money, dict_save, table_class_name)
 
-        elif 0 < abs((float(table_money.strip('"')) / float(content_money)) - 10000) < 10 or 0 < abs((float(table_money.strip('"')) / float(content_money)) - 1000) < 10:
+        # 如果 表格金额比正文金额大一万倍，保存正文金额
+        elif 0 <= abs((float(table_money.strip('"')) / float(content_money)) - 10000) <= 10 or 0 <= abs(
+                (float(table_money.strip('"')) / float(content_money)) - 1000) <= 10:
 
             notnull_dict(content_money, dict_save, table_class_name)
-
+        # 如果 正文金额比表格金额大一万倍，保存表格金额
+        elif 0 <= abs((float(content_money) / float(table_money.strip('"'))) - 10000) <= 10 or 0 <= abs(
+                (float(content_money) / float(table_money.strip('"'))) - 1000) <= 10:
+            notnull_dict(table_money, dict_save, table_class_name)
+        # 不满足上面的条件保存正文金额
         else:
             notnull_dict(content_money.strip('"'), dict_save, table_class_name)
 
@@ -713,12 +722,11 @@ class FooError(ValueError):
 
 def show_time(func):
     def wrapper():
-        star = time.process_time()
+        start_time = time.time()
         func()
-        end= time.process_time()
-        print('spend_time:',end-star)
+        end_time= time.time()
+        print("程序运行时间为：{} 秒".format(str(round((end_time - start_time), 1))))
     return wrapper
-
 
 
 

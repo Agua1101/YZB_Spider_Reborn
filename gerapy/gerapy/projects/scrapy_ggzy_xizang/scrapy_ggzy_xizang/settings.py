@@ -1,4 +1,4 @@
-# Scrapy settings for ccgp_gov_cn project
+# Scrapy settings for scrapy_ggzy_xizang project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ccgp_gov_cn'
+BOT_NAME = 'scrapy_ggzy_xizang'
 
-SPIDER_MODULES = ['ccgp_gov_cn.spiders']
-NEWSPIDER_MODULE = 'ccgp_gov_cn.spiders'
+SPIDER_MODULES = ['scrapy_ggzy_xizang.spiders']
+NEWSPIDER_MODULE = 'scrapy_ggzy_xizang.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ccgp_gov_cn (+http://www.yourdomain.com)'
+#USER_AGENT = 'scrapy_ggzy_xizang (+http://www.yourdomain.com)'
 
 
 # 重试次数
@@ -22,7 +22,7 @@ NEWSPIDER_MODULE = 'ccgp_gov_cn.spiders'
 # RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 # DOWNLOAD_TIMEOUT = 10
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -50,15 +50,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
-   # 'ccgp_gov_cn.middlewares.CcgpGovCnSpiderMiddleware': 543,
-   'ccgp_gov_cn.middlewares.ProcessRequest': 541,
+   'scrapy_ggzy_xizang.middlewares.ScrapyGgzyXizangSpiderMiddleware': 543,
 }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   # 'ccgp_gov_cn.middlewares.CcgpGovCnDownloaderMiddleware': 543,
-   'ccgp_gov_cn.middlewares.ProcessRequest': 541,
+   'scrapy_ggzy_xizang.middlewares.ScrapyGgzyXizangDownloaderMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -70,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'ccgp_gov_cn.pipelines.CcgpGovCnPipeline': 300,
+   'scrapy_ggzy_xizang.pipelines.ScrapyGgzyXizangPipeline': 300,
 }
 
 # MySQL数据库配置
@@ -80,6 +78,7 @@ user = 'root'
 password = 'jie8#jlfsjd'
 db = 'crawl_test'
 charset = 'utf8'
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -101,6 +100,3 @@ charset = 'utf8'
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-
-
-

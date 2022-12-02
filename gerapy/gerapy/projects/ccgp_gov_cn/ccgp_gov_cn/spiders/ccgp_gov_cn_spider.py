@@ -38,7 +38,7 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
 
 
         start_time, end_time = self.get_date()
-        for i in range(1,10):
+        for i in range(1,20):
             params = {
                 'searchtype': '1',
                 'page_index': str(i),
@@ -46,8 +46,8 @@ class CcgpGovCnSpiderSpider(scrapy.Spider):
                 'pinMu': '0',
                 'bidType': '0',
                 'kw': '',
-                'start_time': '2022:11:10',
-                'end_time': '2022:11:10',
+                'start_time': '2022:11:08',
+                'end_time': '2022:11:08',
                 'timeType': '6'
             }
             # headers = {
